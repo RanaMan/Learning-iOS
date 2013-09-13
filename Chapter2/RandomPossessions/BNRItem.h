@@ -10,22 +10,22 @@
 
 @interface BNRItem : NSObject
 {
-    NSString *itemName;
-    NSString *serialNumber;
-    int valueInDollars;
-    NSDate *dateCreated;
-}
+   }
 
-//Define Accessor Methods:
--(NSString *)itemName;
--(NSString *)serialNumber;
--(int)valueinDollars;
--(NSDate *) dateCreated;
+-(id)initWithItemName:(NSString *) name
+            valueInDollars:(int) value
+            serialNumber:(NSString *) sNumber;
 
--(void) setItemName: (NSString *) newName;
--(void) setSerialNumber: (NSString *) newSerialNuber;
--(void) setValueInDollars: (int) newValue;
+@property (nonatomic, strong) BNRItem *containedItem;
+@property (nonatomic, weak) BNRItem *container;
 
+@property (nonatomic, strong) NSString *itemName;
+@property (nonatomic, strong) NSString *serialNumber;
+@property (nonatomic) int valueInDollars;
+@property (nonatomic, readonly, strong) NSDate *dateCreated;
+
+//First Class method
++(id)RandomItem;
 
 
 @end

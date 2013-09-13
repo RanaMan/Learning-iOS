@@ -17,33 +17,21 @@ int main(int argc, const char * argv[])
         // insert code here...
         NSLog(@"Hello, World!");
         
-        //Create the array
-        NSMutableArray *itemList = [[NSMutableArray alloc] init];
+   
+        BNRItem *backpack = [[BNRItem alloc] init];
+        [backpack setItemName:@"Backpack"];
         
-        //Add some objects
-        [itemList addObject:@"One"];
-        [itemList addObject:@"Two"];
-        [itemList addObject:@"Three"];
+        BNRItem *calculator = [[BNRItem alloc] init];
+        [backpack setItemName:@"Calculator"];
+
         
-        //Insert an Object
-        [itemList insertObject:@"Zero"
-                      atIndex:0];
-      
-        //Loop through the array
-        for(NSString *s in itemList){
-            NSLog(@"Looking at value %@", s);
-        }
+        //and another! Retain CYCLE
+        [backpack setContainedItem:calculator];
+
+        backpack = nil;
+        NSLog(@"Container %@ ", [calculator container]);
         
-        BNRItem *p = [[BNRItem alloc] init];
-        [p setItemName:@"Big Red Sofa"];
-        [p setValueInDollars:500];
-        [p setSerialNumber:@"abc123"];
-        
-        NSLog(@" %@ %d %@ %@ ", [p itemName],[p valueinDollars],[p serialNumber],[p dateCreated] );
-        
-        //Removed the array
-        itemList = nil;
-        
+        calculator = nil;
     }
     return 0;
 }
